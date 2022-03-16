@@ -14,11 +14,16 @@ export default async function startServer(dev) {
     const httpServer = createHttpServer(app);
     const socketServer = createSocketServer(httpServer);
     const port = process.env.PORT || 4000;
+    const url = port === 4000 ? `http://localhost:${port}` : "https://blackjack-io-app.herokuapp.com";
 
     app.use(express.static(path.join(process.cwd(), 'build')));
 
+    app.get('/:tableId',  (req, res) => {
+      res.sendFile(path.join(process.cwd(), 'build', 'index.html'));
+    });
+
     httpServer.listen(port, () => {
-      console.info(`Listening on port ${port}`);
+      console.info(`Open app at ${url}`);
     });
   }
 }

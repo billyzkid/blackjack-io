@@ -6,6 +6,11 @@ export default {
     '@snowpack/plugin-sass'
   ],
   routes: [
+    {
+      match: 'routes',
+      src: '.*',
+      dest: '/index.html'
+    },
   ],
   optimize: {
     //bundle: true,
@@ -14,7 +19,7 @@ export default {
   packageOptions: {
   },
   devOptions: {
-    port: 3000,
+    port: 4000,
     open: 'default',
     hmr: true
   },
